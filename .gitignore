@@ -1,0 +1,16 @@
+# Local configuration may contain credentials. Keep the documented template.
+.env
+.env.*
+!.env.example
+frontend/.env.local
+frontend/.env.*.local
+
+# Runtime and generated files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.db
+*.sqlite*
+node_modules/
+.next/
+coverage/

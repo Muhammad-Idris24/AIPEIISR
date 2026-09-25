@@ -1,0 +1,3 @@
+# Agent Handoff
+
+Before changing code, read BUILD_STATE.md, BUILD_PLAN.md, REQUIREMENTS_TRACEABILITY.md, TECHNICAL_RESEARCH.md, PROVIDER_MATRIX.md, DECISIONS.md and KNOWN_ISSUES.md. Run `pytest` from `backend` after backend changes. Update BUILD_STATE.md, CHANGELOG.md and KNOWN_ISSUES.md at every milestone. Auth0 backend verification (26 tests pass) and the Next.js sign-in shell (TypeScript clean) are complete; resume by configuring `frontend/.env.local` and replacing synthetic protected-route `x-role` headers with Auth0 access-token Authorization headers. Do not mark requirements verified without test evidence.

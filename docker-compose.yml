@@ -1,0 +1,25 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: aipeiisr
+      POSTGRES_USER: aipeiisr
+      POSTGRES_PASSWORD: development-only
+    ports: ["5432:5432"]
+    volumes: ["postgres_data:/var/lib/postgresql/data"]
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+  api:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://aipeiisr:development-only@db:5432/aipeiisr
+      REDIS_URL: redis://redis:6379/0
+      AUTH0_DOMAIN: ${AUTH0_DOMAIN:-}
+      AUTH0_AUDIENCE: ${AUTH0_AUDIENCE:-}
+      AUTH0_ROLES_CLAIM: ${AUTH0_ROLES_CLAIM:-https://api.aipeiisr.local/roles}
+      X_ROLE_ENABLED: ${X_ROLE_ENABLED:-true}
+    ports: ["8000:8000"]
+    depends_on: [db,redis]
+volumes:
+  postgres_data:
